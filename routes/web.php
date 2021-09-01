@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('tracker.search');
 });
+
+Route::get('/list', 'App\Http\Controllers\TrackerController@list')->name('list');
