@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('tracker.search');
-});
 
 Route::get('/list', 'App\Http\Controllers\TrackerController@list')->name('list');
+Route::get('/', 'App\Http\Controllers\TrackerController@search')->name('search');
+Route::get('/search', 'App\Http\Controllers\TrackerController@search')->name('search');
+Route::post('/search', 'App\Http\Controllers\TrackerController@searchSubmit')->name('search.submit');
