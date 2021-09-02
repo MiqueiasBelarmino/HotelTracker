@@ -29,6 +29,16 @@ class TrackerController extends Controller
             $location = $response->object()->results[0]->locations[0];
             if (!empty($location->adminArea1) || !empty($location->adminArea3) || !empty($location->adminArea5)) {
                 $hotels = (new HotelController)->getHotels($location->latLng->lat,$location->latLng->lng);
+                if($request->order =="price")
+                {
+                    usort($hotels, function($a, $b) {
+                        return $a['price'] <=> $b['price'];
+                    });
+                }else{
+                    usort($hotels, function($a, $b) {
+                        return $a['distance'] <=> $b['distance'];
+                    });
+                }
                 $hotels = array_slice($hotels, 0, 10);
                 return view('tracker.list',compact('hotels'));
             } else {
