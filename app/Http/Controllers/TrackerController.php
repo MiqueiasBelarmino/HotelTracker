@@ -22,7 +22,7 @@ class TrackerController extends Controller
         if (!empty($request->location)) {
             $response = Http::withHeaders([
                 'Accept' => 'application/json'
-            ])->post(env('MQ_URL') . env('MQ_KEY') . '&location', [
+            ])->post(env('MAP_URL') . env('MAP_KEY') . '&location', [
                 'location' => $request->location
             ]);
 
